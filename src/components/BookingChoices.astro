@@ -1,0 +1,81 @@
+---
+import { APPOINTMENTS, bookingLink, type BookingContext, type LinkPage } from '../lib/booking'
+
+interface Props {
+  /** On a project page: adds inspiration (and project_type when suggested) to both links. */
+  project?: BookingContext
+  /** Where these links sit (utm_content): home, our-work or the project slug. */
+  page: LinkPage
+  /** On a black panel the filled tile turns white. */
+  onPanel?: boolean
+}
+
+const { project, page, onPanel = false } = Astro.props
+const choices = [
+  {
+    key: 'call' as const,
+    hint: 'We ring you at a time you pick.',
+  },
+  {
+    key: 'visit' as const,
+    hint: 'We come and look at the job with you.',
+  },
+]
+---
+
+<div class="flex flex-col gap-3">
+  <ul class="grid gap-3">
+    {choices.map(({ key, hint }, i) => {
+      const a = APPOINTMENTS[key]
+      const filled = i === 0
+      const tone = onPanel
+        ? filled
+          ? 'border-on-panel bg-on-panel text-action hover:bg-on-panel-hover'
+          : 'border-on-panel text-on-panel hover:bg-white/10'
+        : filled
+          ? 'border-action bg-action text-white hover:bg-action-hover'
+          : 'border-action bg-white text-action hover:bg-soft'
+      return (
+        <li>
+          <a
+            href={bookingLink(key, page, project)}
+            data-appointment={key}
+            class:list={[
+              'flex min-h-16 items-center justify-between gap-4 rounded-control border px-5 py-3 no-underline',
+              tone,
+            ]}
+          >
+            <span class="flex flex-col">
+              <span class="text-lg leading-snug font-medium">
+                {a.name} · {a.minutes} minutes
+              </span>
+              <span
+                class:list={['text-sm', filled !== onPanel ? 'text-on-panel-hover' : 'text-muted']}
+              >
+                {hint}
+              </span>
+            </span>
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              class="shrink-0"
+            >
+              <path
+                d="M4 10h11m-4-4 4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="square"
+              />
+            </svg>
+          </a>
+        </li>
+      )
+    })}
+  </ul>
+  <p class:list={['text-base font-medium', onPanel ? 'text-on-panel' : 'text-ink']}>
+    Both are free.
+  </p>
+</div>

@@ -1,0 +1,192 @@
+@import 'tailwindcss';
+/* Roboto 400/500/700, latin subset, self-hosted with font-display: swap (brand guide 3). */
+@import '@fontsource/roboto/latin-400.css';
+@import '@fontsource/roboto/latin-500.css';
+@import '@fontsource/roboto/latin-700.css';
+
+/*
+ * Q3 Interiors brand tokens (website brand guide v2.0), the same roles and values as the booking
+ * site (book.q3interiors.ie, chris-88/q3-interiors src/index.css) so moving between the two has
+ * no seam. Named by role, not colour. Light only.
+ */
+@theme {
+  --font-sans: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-action: #000000;
+  --color-action-hover: #2b2b2b;
+  --color-ink: #171717;
+  --color-muted: #555555;
+  --color-soft: #f5f5f5;
+  --color-edge: #767676;
+  --color-rule: #d4d4d4;
+  --color-panel: #000000;
+  --color-on-panel: #ffffff;
+  --color-on-panel-hover: #e6e6e6;
+
+  /* Type scale (guide 3): mobile -> desktop. */
+  --text-display: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  --text-display--line-height: 1.08;
+  --text-section: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --text-section--line-height: 1.15;
+  --text-title: clamp(1.375rem, 1.25rem + 0.6vw, 1.625rem);
+  --text-title--line-height: 1.25;
+  --text-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-body--line-height: 1.55;
+
+  --container-page: 75rem;
+  --container-prose: 64ch;
+  --radius-control: 0.25rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-size: var(--text-body);
+    line-height: 1.55;
+  }
+  a {
+    text-underline-offset: 0.18em;
+  }
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  dd,
+  figcaption {
+    overflow-wrap: break-word;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/*
+ * Focus (guide 6): 3px black outline with a 3px offset on light surfaces, white on black panels.
+ * Unlayered so it wins over utilities.
+ */
+:focus-visible {
+  outline: 3px solid var(--color-action);
+  outline-offset: 3px;
+}
+.on-panel :focus-visible {
+  outline-color: var(--color-on-panel);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Primary and secondary actions (guide 6): 48px high, 4px corners, 24px side padding. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--color-action);
+  border-radius: var(--radius-control);
+  background: var(--color-action);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  &:hover {
+    background: var(--color-action-hover);
+  }
+}
+@utility btn-secondary {
+  background: #ffffff;
+  color: var(--color-action);
+  &:hover {
+    background: #ffffff;
+    text-decoration: underline;
+  }
+}
+
+/* The small uppercase label with a rule before it, as in the design. */
+@utility eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  &::before {
+    content: '';
+    width: 1.75rem;
+    border-top: 1px solid currentColor;
+  }
+}
+
+/*
+ * Photo switcher without JavaScript: each thumbnail is a label holding a visually hidden radio.
+ * The checked radio picks the slide. Up to six slides.
+ */
+[data-switcher] [data-slide] {
+  display: none;
+}
+@supports not selector(:has(*)) {
+  [data-switcher] [data-slide]:first-of-type {
+    display: block;
+  }
+}
+[data-switcher]:has([data-thumb]:nth-of-type(1) input:checked) [data-slide]:nth-of-type(1),
+[data-switcher]:has([data-thumb]:nth-of-type(2) input:checked) [data-slide]:nth-of-type(2),
+[data-switcher]:has([data-thumb]:nth-of-type(3) input:checked) [data-slide]:nth-of-type(3),
+[data-switcher]:has([data-thumb]:nth-of-type(4) input:checked) [data-slide]:nth-of-type(4),
+[data-switcher]:has([data-thumb]:nth-of-type(5) input:checked) [data-slide]:nth-of-type(5),
+[data-switcher]:has([data-thumb]:nth-of-type(6) input:checked) [data-slide]:nth-of-type(6) {
+  display: block;
+}
+[data-thumb]:has(input:checked) {
+  outline: 1px solid var(--color-action);
+  outline-offset: 2px;
+}
+[data-thumb]:has(input:focus-visible) {
+  outline: 3px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+/* Gallery filter without JavaScript: the chips are radios; with none checked or no :has, all show. */
+[data-chip]:has(input:checked) {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #ffffff;
+}
+[data-chip]:has(input:focus-visible) {
+  outline: 3px solid var(--color-action);
+  outline-offset: 3px;
+}
+[data-gallery]:has(input[value='Homes']:checked) [data-audience]:not([data-audience='Homes']),
+[data-gallery]:has(input[value='Workplaces']:checked)
+  [data-audience]:not([data-audience='Workplaces']) {
+  display: none;
+}

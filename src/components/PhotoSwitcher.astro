@@ -1,0 +1,60 @@
+---
+import { imageUrl, projectPath, srcset, type Project } from '../lib/projects'
+
+/**
+ * The hero photos. No JavaScript: each thumbnail is a label around a visually hidden radio, and
+ * CSS in global.css shows the slide whose radio is checked. Hidden slides' images are lazy, so the
+ * browser only fetches them when chosen.
+ */
+interface Props {
+  projects: Project[]
+}
+const { projects } = Astro.props
+---
+
+<div data-switcher class="relative flex flex-col gap-3">
+  <div>
+    {projects.map((p, i) => (
+      <figure data-slide class="m-0">
+        <div class="aspect-[6/5] overflow-hidden bg-soft">
+          <img
+            src={imageUrl(p.images.wide)}
+            srcset={srcset(p)}
+            sizes="(min-width: 75rem) 36rem, (min-width: 48rem) 46vw, calc(100vw - 3rem)"
+            width={p.images.wide.width}
+            height={p.images.wide.height}
+            alt={p.alt}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
+            decoding="async"
+            class="h-full w-full object-cover"
+          />
+        </div>
+        <figcaption class="mt-3 flex min-h-12 flex-col justify-center sm:pr-48">
+          <a href={projectPath(p)} class="font-medium text-ink underline-offset-4 hover:underline">
+            {p.title}
+          </a>
+          <span class="text-sm text-muted">{p.location}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <fieldset class="m-0 flex gap-2 border-0 p-0 sm:absolute sm:right-0 sm:bottom-0">
+    <legend class="sr-only">Choose a photo</legend>
+    {projects.map((p, i) => (
+      <label data-thumb class="block h-12 w-14 cursor-pointer overflow-hidden bg-soft">
+        <input type="radio" name="hero-photo" value={p.slug} checked={i === 0} class="sr-only" />
+        <img
+          src={imageUrl(p.images.small)}
+          width={p.images.small.width}
+          height={p.images.small.height}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+        <span class="sr-only">{p.title}</span>
+      </label>
+    ))}
+  </fieldset>
+</div>

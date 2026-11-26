@@ -1,0 +1,114 @@
+---
+import Base from '../../layouts/Base.astro'
+import BookingChoices from '../../components/BookingChoices.astro'
+import {
+  imageUrl,
+  neighbours,
+  projectPath,
+  projects,
+  srcset,
+  type Project,
+} from '../../lib/projects'
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }))
+}
+
+interface Props {
+  project: Project
+}
+
+const { project: p } = Astro.props
+const { previous, next } = neighbours(p.slug)
+const { wide } = p.images
+const landscape = wide.width > wide.height
+
+/** The booking prompt, by the kind of job in the photo. */
+const prompt: Record<string, string> = {
+  Kitchen: 'Planning a kitchen?',
+  Bathroom: 'Planning a bathroom?',
+  'Workplace fit-out': 'Fitting out a workplace?',
+}
+const heading =
+  (p.suggestedProjectType && prompt[p.suggestedProjectType]) ?? 'Planning work like this?'
+---
+
+<Base
+  title={`${p.title}, ${p.location}`}
+  description={`${p.title} in ${p.location}, by Q3 Interiors. ${p.description}`}
+  ogImage={{ path: imageUrl(wide), width: wide.width, height: wide.height, alt: p.alt }}
+>
+  <article class="mx-auto max-w-page px-6 pt-6 pb-12 md:px-10 md:pt-10 md:pb-20">
+    <p class="mb-6">
+      <a href="/our-work/" class="inline-flex min-h-12 items-center gap-2 text-ink underline">
+        <span aria-hidden="true">←</span> Our work
+      </a>
+    </p>
+    <div
+      class:list={[
+        'grid gap-8 md:gap-12',
+        landscape ? 'lg:grid-cols-[3fr_2fr]' : 'md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]',
+      ]}
+    >
+      <div class:list={[landscape ? '' : 'md:order-2']}>
+        <img
+          src={imageUrl(wide)}
+          srcset={srcset(p)}
+          sizes={
+            landscape
+              ? `(min-width: 64rem) min(${wide.width}px, 42rem), calc(100vw - 3rem)`
+              : `(min-width: 48rem) min(${wide.width}px, 36rem), calc(100vw - 3rem)`
+          }
+          width={wide.width}
+          height={wide.height}
+          alt={p.alt}
+          fetchpriority="high"
+          decoding="async"
+          class="block h-auto w-auto max-w-full bg-soft"
+        />
+      </div>
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-2">
+          <p class="eyebrow">{p.audience === 'Workplaces' ? 'Workplace' : 'Home'}</p>
+          <h1 class="text-display font-medium tracking-tight">{p.title}</h1>
+          <p class="text-muted">{p.location}</p>
+        </div>
+        <p class="max-w-prose">{p.description}</p>
+        <div id="book" class="flex scroll-mt-6 flex-col gap-4 border-t border-rule pt-6">
+          <h2 class="text-title font-medium">{heading}</h2>
+          <p class="text-muted">Tell us about it on a call, or we come and look at the job.</p>
+          <BookingChoices project={p} page={p.slug} />
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="More projects" class="mt-12 border-t border-rule pt-6 md:mt-20">
+      <ul class="grid gap-4 sm:grid-cols-2">
+        <li>
+          <a
+            href={projectPath(previous)}
+            rel="prev"
+            class="flex min-h-12 flex-col rounded-control py-2 text-ink no-underline hover:underline"
+          >
+            <span class="text-sm text-muted">Previous project</span>
+            <span class="font-medium">
+              {previous.title}, {previous.location}
+            </span>
+          </a>
+        </li>
+        <li class="sm:text-right">
+          <a
+            href={projectPath(next)}
+            rel="next"
+            class="flex min-h-12 flex-col rounded-control py-2 text-ink no-underline hover:underline sm:items-end"
+          >
+            <span class="text-sm text-muted">Next project</span>
+            <span class="font-medium">
+              {next.title}, {next.location}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </article>
+</Base>

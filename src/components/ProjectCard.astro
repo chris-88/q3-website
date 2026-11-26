@@ -1,0 +1,46 @@
+---
+import { imageUrl, projectPath, srcset, type Project } from '../lib/projects'
+
+interface Props {
+  project: Project
+  headingLevel?: 'h2' | 'h3'
+  /** `sizes` for the grid this card sits in. */
+  sizes?: string
+  /** Eager for cards in the first screenful. */
+  eager?: boolean
+}
+
+const {
+  project: p,
+  headingLevel: Heading = 'h3',
+  sizes = '(min-width: 64rem) 22rem, (min-width: 40rem) 45vw, calc(100vw - 3rem)',
+  eager = false,
+} = Astro.props
+---
+
+<article class="group relative flex flex-col gap-3" data-audience={p.audience}>
+  <div class="aspect-[4/3] overflow-hidden bg-soft">
+    <img
+      src={imageUrl(p.images.small)}
+      srcset={srcset(p)}
+      sizes={sizes}
+      width={p.images.small.width}
+      height={p.images.small.height}
+      alt={p.alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+  </div>
+  <div>
+    <Heading class="text-title font-medium">
+      <a
+        href={projectPath(p)}
+        class="text-ink no-underline group-hover:underline after:absolute after:inset-0 after:content-['']"
+      >
+        {p.title}
+      </a>
+    </Heading>
+    <p class="text-sm text-muted">{p.location}</p>
+  </div>
+</article>

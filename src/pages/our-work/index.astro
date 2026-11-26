@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro'
+import BookingChoices from '../../components/BookingChoices.astro'
+import ProjectCard from '../../components/ProjectCard.astro'
+import { projects } from '../../lib/projects'
+
+const filters = [
+  { value: 'all', label: 'All projects' },
+  { value: 'Homes', label: 'Homes' },
+  { value: 'Workplaces', label: 'Workplaces' },
+] as const
+---
+
+<Base
+  title="Our work"
+  description="Six finished jobs by Q3 Interiors: kitchens, bathrooms, hallways and an office fit-out, from Donabate to Fitzwilliam Square."
+>
+  <section data-gallery class="mx-auto max-w-page px-6 pt-8 pb-12 md:px-10 md:pt-16 md:pb-20">
+    <div class="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div class="flex flex-col gap-3">
+        <h1 class="text-display font-medium tracking-tight">Our work.</h1>
+        <p class="max-w-prose text-muted">
+          Five homes and an office. Each photo is a job our team finished.
+        </p>
+      </div>
+      <fieldset class="m-0 flex flex-wrap gap-2 border-0 p-0">
+        <legend class="sr-only">Show</legend>
+        {filters.map((f, i) => (
+          <label
+            data-chip
+            class="inline-flex min-h-12 cursor-pointer items-center rounded-full border border-edge px-5 font-medium text-ink hover:border-ink"
+          >
+            <input type="radio" name="audience" value={f.value} checked={i === 0} class="sr-only" />
+            {f.label}
+          </label>
+        ))}
+      </fieldset>
+    </div>
+    <ul class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((p, i) => (
+        <li data-audience={p.audience}>
+          <ProjectCard project={p} headingLevel="h2" eager={i < 3} />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="border-t border-rule" aria-labelledby="book-heading">
+    <div
+      id="book"
+      class="mx-auto grid max-w-page scroll-mt-6 gap-8 px-6 py-12 md:grid-cols-2 md:gap-16 md:px-10 md:py-20"
+    >
+      <div class="flex flex-col gap-4">
+        <h2 id="book-heading" class="text-section font-medium">
+          Planning something similar?
+        </h2>
+        <p class="max-w-prose text-muted">
+          Tell us about it on a call, or we come and look at the job.
+        </p>
+      </div>
+      <BookingChoices page="our-work" />
+    </div>
+  </section>
+</Base>

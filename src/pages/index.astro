@@ -1,0 +1,149 @@
+---
+import Base from '../layouts/Base.astro'
+import BookingChoices from '../components/BookingChoices.astro'
+import PhotoSwitcher from '../components/PhotoSwitcher.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import { projectBySlug, projects, type Project } from '../lib/projects'
+
+const pick = (slugs: string[]): Project[] =>
+  slugs.map((s) => {
+    const p = projectBySlug(s)
+    if (!p) throw new Error(`Unknown project on the home page: ${s}`)
+    return p
+  })
+
+// The hero shows the three photographs the design uses; the preview shows three others.
+const heroProjects = pick(['donabate', 'fairview', 'fitzwilliam-office'])
+const previewProjects = pick(['castleknock', 'fitzwilliam-bathroom', 'adelaide'])
+
+const services = [
+  ['Kitchens', 'We strip out the old kitchen, then plumb, wire, tile and fit the new one.'],
+  ['Bathrooms', 'Strip out, plumbing, tiling and fitting, by one team.'],
+  ['Several rooms', 'Work across two or more rooms, planned as one job.'],
+  ['Whole-home renovations', 'Every room and every trade, run as one project.'],
+  ['Extensions', 'More room, built onto the house you have.'],
+  ['Attic conversions', 'An attic turned into a room you can use.'],
+  ['Workplace fit-outs', 'Offices and reception areas, fitted out for how you work.'],
+] as const
+
+const steps = [
+  [
+    'Book a free call or site visit',
+    'A 20-minute phone call, or a 60-minute visit to your home. Tell us what you want done.',
+  ],
+  ['Get an estimate', 'We give you an estimate: a price range for the work you have in mind.'],
+  [
+    'Get a written quote',
+    'Once we agree the scope with you, we send a written quote: the price for that work. Then you decide.',
+  ],
+] as const
+---
+
+<Base
+  title="Q3 Interiors | Renovations and fit-outs"
+  fullTitle
+  description="Kitchens, bathrooms, extensions and whole-home renovations, done by one team across the trades. Start with a free 20-minute call or a free 60-minute site visit."
+>
+  <section class="mx-auto max-w-page px-6 pt-8 pb-12 md:px-10 md:pt-16 md:pb-20">
+    <div class="grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+      <div class="flex flex-col gap-6">
+        <p class="eyebrow">Renovations and fit-outs</p>
+        <h1 class="text-display font-medium tracking-tight">
+          Construction. Without the complications.
+        </h1>
+        <p class="max-w-prose text-body text-muted">
+          We line up the plumber, the electrician and the tiler. You talk to one team.
+        </p>
+        <div id="book" class="scroll-mt-6">
+          <h2 class="sr-only">Book a free call or site visit</h2>
+          <BookingChoices page="home" />
+        </div>
+      </div>
+      <PhotoSwitcher projects={heroProjects} />
+    </div>
+  </section>
+
+  <section class="border-t border-rule" aria-labelledby="what-we-do">
+    <div class="mx-auto max-w-page px-6 py-12 md:px-10 md:py-20">
+      <div class="grid gap-8 md:grid-cols-[1fr_2fr] md:gap-16">
+        <div class="flex flex-col gap-4">
+          <h2 id="what-we-do" class="text-section font-medium">
+            What we do
+          </h2>
+          <p class="max-w-prose text-muted">
+            One team across the trades. We plan the work and line up the people to do it. You deal
+            with us, not with each trade.
+          </p>
+        </div>
+        <ul class="grid gap-x-10 sm:grid-cols-2">
+          {services.map(([name, line]) => (
+            <li class="border-t border-rule py-4">
+              <h3 class="font-medium text-ink">{name}</h3>
+              <p class="text-muted">{line}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-soft" aria-labelledby="how-it-works">
+    <div class="mx-auto max-w-page px-6 py-12 md:px-10 md:py-20">
+      <h2 id="how-it-works" class="mb-8 text-section font-medium">
+        How it works
+      </h2>
+      <ol class="grid gap-8 md:grid-cols-3 md:gap-10">
+        {steps.map(([title, line], i) => (
+          <li class="flex flex-col gap-2 border-t border-ink pt-4">
+            <span class="text-sm font-medium text-muted" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="text-title font-medium">{title}</h3>
+            <p class="text-muted">{line}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-10 max-w-prose text-ink">
+        An estimate is a price range. A quote is the price for an agreed scope.
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="our-work">
+    <div class="mx-auto max-w-page px-6 py-12 md:px-10 md:py-20">
+      <div class="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div class="flex flex-col gap-2">
+          <h2 id="our-work" class="text-section font-medium">
+            Our work
+          </h2>
+          <p class="text-muted">Five homes and an office, from Donabate to Fitzwilliam Square.</p>
+        </div>
+        <a
+          href="/our-work/"
+          class="inline-flex min-h-12 items-center font-medium text-ink underline"
+        >
+          See all {projects.length} projects
+        </a>
+      </div>
+      <div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        {previewProjects.map((p) => (
+          <ProjectCard project={p} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="on-panel bg-panel text-on-panel" aria-labelledby="talk">
+    <div class="mx-auto grid max-w-page gap-8 px-6 py-12 md:grid-cols-2 md:gap-16 md:px-10 md:py-20">
+      <div class="flex flex-col gap-4">
+        <h2 id="talk" class="text-section font-medium">
+          Talk to Q3
+        </h2>
+        <p class="max-w-prose text-on-panel-hover">
+          Tell us what you have in mind. Start with a 20-minute call or a 60-minute site visit.
+        </p>
+      </div>
+      <BookingChoices page="home" onPanel />
+    </div>
+  </section>
+</Base>

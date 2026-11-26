@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro'
+import { loadBusiness } from '../lib/business'
+import { CAMPAIGN_KEYS } from '../lib/campaign'
+
+const business = await loadBusiness()
+const who = business?.legal_name ?? business?.trading_name ?? 'Q3 Interiors'
+const BOOKING_PRIVACY_URL = 'https://book.q3interiors.ie/#/privacy'
+---
+
+<Base
+  title="Privacy"
+  description="What the Q3 Interiors website collects: no cookies, no analytics and no forms. Booking happens on book.q3interiors.ie."
+  bookHref="/#book"
+>
+  <article class="mx-auto max-w-page px-6 pt-8 pb-16 md:px-10 md:pt-16 md:pb-24">
+    <div class="flex max-w-prose flex-col gap-8">
+      <h1 class="text-display font-medium tracking-tight">Privacy</h1>
+      <p class="text-body">
+        This website is run by {who}. It shows our work and links to our booking site. Here is what
+        it does and does not do with your information.
+      </p>
+
+      <section class="flex flex-col gap-3" aria-labelledby="collect">
+        <h2 id="collect" class="text-title font-medium">
+          What this site collects
+        </h2>
+        <p>Nothing. It has no forms, no cookies, no analytics and no advertising trackers.</p>
+        <p>
+          The fonts and photos come from this site, not from other companies, so opening a page does
+          not tell anyone else you were here.
+        </p>
+        <p>
+          The site is hosted on GitHub Pages. GitHub keeps a record of visitors' IP addresses for
+          security, as any web host does. We do not see or use those records.
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-3" aria-labelledby="campaign">
+        <h2 id="campaign" class="text-title font-medium">
+          Links from our ads
+        </h2>
+        <p>
+          A link from one of our ads can carry a tag that names the ad, such as
+          <code class="text-sm">{CAMPAIGN_KEYS[0]}</code>. This site passes those tags on to the
+          booking site, so we know which ad brought you. They name the ad, not you.
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-3" aria-labelledby="booking">
+        <h2 id="booking" class="text-title font-medium">
+          When you book
+        </h2>
+        <p>
+          Booking a call or a site visit happens on our booking site, book.q3interiors.ie. That is
+          where you give us your name and contact details. Its privacy notice explains what we keep,
+          why and for how long.
+        </p>
+        <p>
+          <a
+            href={BOOKING_PRIVACY_URL}
+            class="inline-flex min-h-12 items-center font-medium underline"
+          >
+            Read the booking site's privacy notice
+          </a>
+        </p>
+      </section>
+
+      {business?.privacy_contact && (
+        <section class="flex flex-col gap-3" aria-labelledby="questions">
+          <h2 id="questions" class="text-title font-medium">
+            Questions
+          </h2>
+          <p>
+            Email{' '}
+            {business.privacy_contact.includes('@') ? (
+              <a class="underline" href={`mailto:${business.privacy_contact}`}>
+                {business.privacy_contact}
+              </a>
+            ) : (
+              business.privacy_contact
+            )}{' '}
+            about anything on this page.
+          </p>
+        </section>
+      )}
+    </div>
+  </article>
+</Base>

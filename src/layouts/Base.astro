@@ -1,0 +1,182 @@
+---
+import '../styles/global.css'
+import { loadBusiness, telHref } from '../lib/business'
+
+interface Props {
+  /** The page's own title; " | Q3 Interiors" is added unless `fullTitle` is set. */
+  title: string
+  fullTitle?: boolean
+  description: string
+  /** Absolute path of an image for link previews (defaults to the site card). */
+  ogImage?: { path: string; width: number; height: number; alt: string }
+  /** Leave out of search results (the 404 page). */
+  noindex?: boolean
+  /** Where the header's booking button goes: the page's own booking choices (id="book"). */
+  bookHref?: string
+}
+
+const {
+  title,
+  fullTitle = false,
+  description,
+  ogImage,
+  noindex = false,
+  bookHref = '#book',
+} = Astro.props
+const site = Astro.site ?? new URL('https://q3interiors.ie')
+const pageTitle = fullTitle ? title : `${title} | Q3 Interiors`
+const canonical = new URL(Astro.url.pathname, site).toString()
+const og = ogImage ?? {
+  path: '/og/q3-og.png',
+  width: 1200,
+  height: 630,
+  alt: 'Q3 Interiors: construction without the complications',
+}
+const ogUrl = new URL(og.path, site).toString()
+const business = await loadBusiness()
+const isHome = Astro.url.pathname === '/'
+const orgJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: business?.trading_name ?? 'Q3 Interiors',
+  ...(business?.legal_name ? { legalName: business.legal_name } : {}),
+  url: new URL('/', site).toString(),
+  logo: new URL('/brand/q3-full-black.svg', site).toString(),
+  ...(business?.contact_phone ? { telephone: business.contact_phone } : {}),
+  ...(business?.contact_email ? { email: business.contact_email } : {}),
+})
+---
+
+<!doctype html>
+<html lang="en-IE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Q3 Interiors" />
+    <meta property="og:locale" content="en_IE" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content={String(og.width)} />
+    <meta property="og:image:height" content={String(og.height)} />
+    <meta property="og:image:alt" content={og.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {isHome && <script is:inline type="application/ld+json" set:html={orgJson} />}
+  </head>
+  <body class="flex min-h-svh flex-col">
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-control bg-action px-4 py-3 text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
+    >
+      Skip to content
+    </a>
+    <header class="border-b border-rule">
+      <div class="mx-auto flex max-w-page items-center justify-between gap-2 px-4 md:px-8">
+        <a
+          href="/"
+          aria-label="Q3 Interiors home"
+          class="inline-flex min-h-12 shrink-0 items-center rounded-control p-2 md:p-3"
+        >
+          <img
+            src="/brand/q3-full-black.svg"
+            width="160"
+            height="61"
+            alt=""
+            class="block h-auto w-36 md:w-40"
+          />
+        </a>
+        <nav aria-label="Main" class="flex items-center gap-1 sm:gap-4">
+          <a
+            href="/our-work/"
+            class="hidden min-h-12 items-center rounded-control px-2 font-medium text-ink hover:underline min-[380px]:inline-flex"
+            aria-current={Astro.url.pathname.startsWith('/our-work/') ? 'page' : undefined}
+          >
+            Our work
+          </a>
+          <a href={bookHref} class="btn px-4 md:px-6">
+            <span class="md:hidden">Book</span>
+            <span class="hidden md:inline">Book a call or visit</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="on-panel border-t border-white/25 bg-panel text-on-panel">
+      <div class="mx-auto flex max-w-page flex-col gap-8 px-6 py-12 md:flex-row md:justify-between md:gap-16 md:px-10">
+        <div class="flex flex-col gap-6">
+          <img
+            src="/brand/q3-full-white.svg"
+            width="160"
+            height="61"
+            alt="Q3 Interiors"
+            class="block h-auto w-40"
+          />
+          {business && (business.contact_phone || business.contact_email) && (
+            <ul class="flex flex-col gap-1 text-base" aria-label="Contact">
+              {business.contact_phone && (
+                <li>
+                  Phone{' '}
+                  <a class="underline" href={telHref(business.contact_phone)}>
+                    {business.contact_phone}
+                  </a>
+                </li>
+              )}
+              {business.contact_email && (
+                <li>
+                  Email{' '}
+                  <a class="underline" href={`mailto:${business.contact_email}`}>
+                    {business.contact_email}
+                  </a>
+                </li>
+              )}
+            </ul>
+          )}
+          {business?.service_area && <p class="text-base">We work in {business.service_area}.</p>}
+        </div>
+        <div class="flex flex-col gap-6 md:items-end">
+          <nav aria-label="Footer">
+            <ul class="flex flex-wrap gap-x-6 md:justify-end">
+              <li>
+                <a class="inline-flex min-h-12 items-center underline" href="/">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a class="inline-flex min-h-12 items-center underline" href="/our-work/">
+                  Our work
+                </a>
+              </li>
+              <li>
+                <a class="inline-flex min-h-12 items-center underline" href="/privacy/">
+                  Privacy
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <p class="text-sm text-on-panel-hover">
+            {business?.legal_name ?? business?.trading_name ?? 'Q3 Interiors'}
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      import { carryCampaign } from '../lib/campaign'
+      carryCampaign(document)
+    </script>
+  </body>
+</html>
