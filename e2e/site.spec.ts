@@ -40,7 +40,7 @@ test.describe('every page', () => {
 test.describe('phase 1 scope', () => {
   // Contractor material, prices and the planner are not on the public site yet.
   const banned =
-    /contractor|subcontract|tradesperson|partner|planner|day rate|€|\bEUR\b|\d+\s?k\b|fixed price|guarantee|on time|construction confidence/i
+    /contractor|subcontract|tradesperson|partner|planner|day rate|€|\bEUR\b|\d+\s?k\b|fixed price|guarantee|on time|construction confidence|full quote|quotation|estimated range|rough guide/i
 
   for (const path of [...PAGES, '/no-such-page/']) {
     test(`${path} has no contractor, price or planner content`, async ({ page }) => {
@@ -89,6 +89,19 @@ test.describe('booking links', () => {
         page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Book' }),
       ).toHaveAttribute('href', '/#book')
     }
+  })
+
+  test('project pages label the kind of project and the visit plainly', async ({ page }) => {
+    await page.goto('/our-work/fitzwilliam-office/')
+    await expect(page.locator('main .eyebrow')).toHaveText('Workplace project')
+    await page.goto('/our-work/fairview/')
+    await expect(page.locator('main .eyebrow')).toHaveText('Home project')
+    await expect(page.locator('#book')).toContainText(
+      'Tell us about it on a call, or we come out and look at the space.',
+    )
+    await expect(page.locator('#book')).toContainText(
+      'Both are free. You can change or cancel the time online.',
+    )
   })
 
   test('the privacy page links to the booking privacy notice', async ({ page }) => {
@@ -179,7 +192,15 @@ test.describe('layout and access', () => {
     await expect(page.locator('#book').getByRole('link')).toHaveCount(2)
     await expect(page.locator('#book')).toContainText('Phone call · 20 minutes')
     await expect(page.locator('#book')).toContainText('Site visit · 60 minutes')
-    await expect(page.locator('#book')).toContainText('Both are free.')
+    await expect(page.locator('#book')).toContainText(
+      'Both are free. You can change or cancel the time online.',
+    )
+    await expect(page.locator('#book')).toContainText(
+      'We ring you at a time you pick and talk through your plans.',
+    )
+    await expect(page.locator('#book')).toContainText(
+      'We come out, look at the space and measure up for an estimate.',
+    )
   })
 
   test('interactive targets are at least 48px high in the main column', async ({ page }) => {
