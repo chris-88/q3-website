@@ -74,6 +74,9 @@ const orgJson = JSON.stringify({
     {isHome && <script is:inline type="application/ld+json" set:html={orgJson} />}
   </head>
   <body class="flex min-h-svh flex-col">
+    {/* Cloudflare (which proxies this domain) must not rewrite the email links: they stay plain
+         links that work without JavaScript, and no extra script is injected. */}
+    <Fragment set:html={'<!--email_off-->'} />
     <a
       href="#main"
       class="sr-only z-50 rounded-control bg-action px-4 py-3 text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
@@ -174,6 +177,7 @@ const orgJson = JSON.stringify({
       </div>
     </footer>
 
+    <Fragment set:html={'<!--/email_off-->'} />
     <script>
       import { carryCampaign } from '../lib/campaign'
       carryCampaign(document)
