@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "donabate",
+    "title": "Victorian hallway",
+    "location": "Donabate, Co. Dublin",
+    "audience": "Homes",
+    "suggestedProjectType": null,
+    "alt": "Timber stairs beside a black and cream geometric tiled hallway.",
+    "description": "The tiled border follows the turn of the staircase. A repeating black and cream pattern draws the eye from the front hall through to the next room.",
+    "images": {
+      "small": {
+        "path": "assets/projects/donabate-small.webp",
+        "width": 480,
+        "height": 640
+      },
+      "wide": {
+        "path": "assets/projects/donabate-wide.webp",
+        "width": 800,
+        "height": 1067
+      }
+    }
+  },
+  {
+    "slug": "fairview",
+    "title": "Kitchen fit-out",
+    "location": "Fairview, Dublin 3",
+    "audience": "Homes",
+    "suggestedProjectType": "Kitchen",
+    "alt": "A U-shaped kitchen with dark cabinets, timber worktops, a white sink and a star-patterned floor.",
+    "description": "Dark cabinetry wraps around three sides of this Fairview kitchen. Timber worktops and a deep white sink sit above a floor of repeating star tiles.",
+    "images": {
+      "small": {
+        "path": "assets/projects/fairview-small.webp",
+        "width": 480,
+        "height": 469
+      },
+      "wide": {
+        "path": "assets/projects/fairview-wide.webp",
+        "width": 750,
+        "height": 733
+      }
+    }
+  },
+  {
+    "slug": "fitzwilliam-office",
+    "title": "Georgian office fit-out",
+    "location": "Fitzwilliam Square, Dublin 2",
+    "audience": "Workplaces",
+    "suggestedProjectType": "Workplace fit-out",
+    "alt": "A Georgian entrance with a dark stair runner, blue armchair and globe pendant.",
+    "description": "A stair runner, a blue armchair and a glass-topped table define the reception area. A globe pendant hangs over the foot of the stairs.",
+    "images": {
+      "small": {
+        "path": "assets/projects/fitzwilliam-office-small.webp",
+        "width": 480,
+        "height": 640
+      },
+      "wide": {
+        "path": "assets/projects/fitzwilliam-office-wide.webp",
+        "width": 600,
+        "height": 800
+      }
+    }
+  },
+  {
+    "slug": "castleknock",
+    "title": "Victorian bathroom",
+    "location": "Castleknock, Dublin 15",
+    "audience": "Homes",
+    "suggestedProjectType": "Bathroom",
+    "alt": "A Victorian-style tiled floor seen through an open door, with a terracotta and charcoal border.",
+    "description": "Seen from the doorway, the floor has a pattern of cream, charcoal and terracotta tiles. A dark outer border picks up the line of the room.",
+    "images": {
+      "small": {
+        "path": "assets/projects/castleknock-small.webp",
+        "width": 480,
+        "height": 449
+      },
+      "wide": {
+        "path": "assets/projects/castleknock-wide.webp",
+        "width": 750,
+        "height": 701
+      }
+    }
+  },
+  {
+    "slug": "fitzwilliam-bathroom",
+    "title": "Georgian bathroom",
+    "location": "Fitzwilliam Square, Dublin 2",
+    "audience": "Homes",
+    "suggestedProjectType": "Bathroom",
+    "alt": "Two white basin cabinets beneath a wide mirror above a black and white patterned floor.",
+    "description": "Two separate basin units sit side by side beneath one mirror. White wall tiles give the patterned floor room to stand out.",
+    "images": {
+      "small": {
+        "path": "assets/projects/fitzwilliam-bathroom-small.webp",
+        "width": 480,
+        "height": 640
+      },
+      "wide": {
+        "path": "assets/projects/fitzwilliam-bathroom-wide.webp",
+        "width": 800,
+        "height": 1067
+      }
+    }
+  },
+  {
+    "slug": "adelaide",
+    "title": "Apartment fit-out",
+    "location": "Adelaide Road, Dublin 2",
+    "audience": "Homes",
+    "suggestedProjectType": null,
+    "alt": "An apartment bathroom with a curved shower enclosure, dark textured walls and a geometric floor.",
+    "description": "In the apartment bathroom, a curved shower enclosure leaves space at the centre of the floor. Dark textured wall panels meet a pale geometric tile.",
+    "images": {
+      "small": {
+        "path": "assets/projects/adelaide-small.webp",
+        "width": 480,
+        "height": 360
+      },
+      "wide": {
+        "path": "assets/projects/adelaide-wide.webp",
+        "width": 1067,
+        "height": 800
+      }
+    }
+  }
+]
