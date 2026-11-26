@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro'
 import { loadBusiness } from '../lib/business'
-import { CAMPAIGN_KEYS } from '../lib/campaign'
 
 const business = await loadBusiness()
 const who = business?.legal_name ?? business?.trading_name ?? 'Q3 Interiors'
@@ -32,19 +31,23 @@ const BOOKING_PRIVACY_URL = 'https://book.q3interiors.ie/#/privacy'
         </p>
         <p>
           The site is hosted on GitHub Pages. GitHub keeps a record of visitors' IP addresses for
-          security, as any web host does. We do not see or use those records.
+          security. We do not see or use those records.
         </p>
       </section>
 
       <section class="flex flex-col gap-3" aria-labelledby="campaign">
         <h2 id="campaign" class="text-title font-medium">
-          Links from our ads
+          Links to the booking site
         </h2>
         <p>
-          A link from one of our ads can carry a tag that names the ad, such as
-          <code class="text-sm">{CAMPAIGN_KEYS[0]}</code>. This site passes those tags on to the
-          booking site, so we know which ad brought you. They name the ad, not you.
+          Each link from this site to the booking site carries a short tag saying it came from this
+          website, and from which page. That is how we know how many bookings start here.
         </p>
+        <p>
+          If you came from one of our ads, the link that brought you carries a tag naming the ad.
+          This site passes that tag on to the booking site instead, so we know which ad brought you.
+        </p>
+        <p>The tags name a page or an ad, never you.</p>
       </section>
 
       <section class="flex flex-col gap-3" aria-labelledby="booking">
