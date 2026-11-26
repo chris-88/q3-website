@@ -104,6 +104,23 @@ test.describe('booking links', () => {
     )
   })
 
+  test("email links are kept out of Cloudflare's email obfuscation", async ({ request }) => {
+    for (const path of ['/', '/privacy/']) {
+      const html = await (await request.get(path)).text()
+      expect(html.indexOf('<!--email_off-->')).toBeGreaterThan(-1)
+      expect(html.indexOf('<!--email_off-->')).toBeLessThan(html.indexOf('mailto:'))
+      expect(html.lastIndexOf('<!--/email_off-->')).toBeGreaterThan(html.lastIndexOf('mailto:'))
+    }
+  })
+
+  test('the privacy page names both services that carry the site', async ({ page }) => {
+    await page.goto('/privacy/')
+    await expect(page.locator('main')).toContainText('hosted on GitHub Pages')
+    await expect(page.locator('main')).toContainText(
+      'Cloudflare carries traffic between your browser and the site.',
+    )
+  })
+
   test('the privacy page links to the booking privacy notice', async ({ page }) => {
     await page.goto('/privacy/')
     await expect(
