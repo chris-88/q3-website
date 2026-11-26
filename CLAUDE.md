@@ -56,7 +56,16 @@ Not built and not mentioned anywhere on the site: the bathroom planner, any pric
 
 ## Copy and tone of voice
 
-The tone-of-voice card (kept outside the repo) is binding. In short: "we" throughout, "you" for the homeowner; plain, direct, specific; Irish English, sentence case, no exclamation marks; headlines eight words or fewer; no adjectives any builder could claim (quality, professional, premium, bespoke, stunning, dream, transform, hassle-free, trusted...). An **estimate** is a price range; a **quote** is the price for an agreed scope; the two appointments are a **call** and a **site visit**. No guarantees, no "fixed price", no "on time". Claims allowed: one team across the trades, a free 20-minute call, a free 60-minute site visit, an estimate then a written quote, the six projects. Do not invent years, team size, reviews, awards, areas served or addresses.
+The tone-of-voice card (kept outside the repo) is binding. In short: "we" throughout, "you" for the homeowner; plain, direct, specific; Irish English, sentence case, no exclamation marks; headlines eight words or fewer; no adjectives any builder could claim (quality, professional, premium, bespoke, stunning, dream, transform, hassle-free, trusted...). An **estimate** is a price range; a **written quote** is the price for an agreed scope (see Words we fix); the two appointments are a **call** and a **site visit**. No guarantees, no "fixed price", no "on time". Claims allowed: one team across the trades, a free 20-minute call, a free 60-minute site visit, an estimate then a written quote, the six projects. Do not invent years, team size, reviews, awards, areas served or addresses.
+
+## Words we fix
+
+Use these terms exactly, in every page, test and note:
+
+- **Estimate**: a price range, given after a call or a site visit.
+- **Written quote**: the price for an agreed scope.
+- Never "full quote", "quotation" or "estimated range".
+- "Rough guide" is reserved for the future planner stage and must not appear on the site yet.
 
 ## Contact details
 
