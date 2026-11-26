@@ -21,6 +21,6 @@ npm run build && npx playwright install chromium && npm run test:e2e
 
 ## Deploy
 
-Push to `main`. GitHub Actions runs the checks, builds and publishes to GitHub Pages.
+Push to `main`. GitHub Actions runs the checks, builds and publishes to GitHub Pages. The domain `q3interiors.ie` is a proxied Cloudflare record to GitHub Pages (HTTPS is Cloudflare's).
 
 See `CLAUDE.md` for the booking link contract, how to add a project and what is deliberately left out.

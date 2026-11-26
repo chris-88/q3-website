@@ -8,15 +8,15 @@ The public website of Q3 Interiors at `https://q3interiors.ie`: a Dublin renovat
 
 Phase 1 (2026-11-28): home, "Our work" gallery, six project pages, privacy, 404, sitemap, robots, favicons, Open Graph. Static pre-rendered HTML; the only JavaScript is the small campaign-tag script below.
 
-| Concern     | Choice                                                                                                     |
-| ----------- | ---------------------------------------------------------------------------------------------------------- |
-| Build       | Astro 7 (`output: 'static'`, `trailingSlash: 'always'`, `build.format: 'directory'`), TypeScript strictest |
-| Styling     | Tailwind CSS v4 via `@tailwindcss/vite`; tokens in `src/styles/global.css`                                 |
-| Fonts       | Roboto 400/500/700 self-hosted with `@fontsource/roboto` (latin, `font-display: swap`)                     |
-| Tests       | Vitest (`src/**/*.test.ts`); Playwright + axe against `astro preview` of the production build              |
-| Lint/format | `astro check` (types), oxlint, Prettier with the Astro and Tailwind plugins                                |
-| Hosting     | GitHub Pages via Actions on push to `main`; `public/CNAME` = `q3interiors.ie`                              |
-| Node        | `.nvmrc` = 24, npm                                                                                         |
+| Concern     | Choice                                                                                                                                 |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Build       | Astro 7 (`output: 'static'`, `trailingSlash: 'always'`, `build.format: 'directory'`), TypeScript strictest                             |
+| Styling     | Tailwind CSS v4 via `@tailwindcss/vite`; tokens in `src/styles/global.css`                                                             |
+| Fonts       | Roboto 400/500/700 self-hosted with `@fontsource/roboto` (latin, `font-display: swap`)                                                 |
+| Tests       | Vitest (`src/**/*.test.ts`); Playwright + axe against `astro preview` of the production build                                          |
+| Lint/format | `astro check` (types), oxlint, Prettier with the Astro and Tailwind plugins                                                            |
+| Hosting     | GitHub Pages via Actions on push to `main`; `public/CNAME` = `q3interiors.ie`; the apex is a proxied Cloudflare record to GitHub Pages |
+| Node        | `.nvmrc` = 24, npm                                                                                                                     |
 
 Why Astro: real HTML files at real URLs (search engines must find each project), zero JavaScript by default, components and TypeScript at build time. No client router, no hydration.
 
@@ -92,4 +92,8 @@ npm run brand:images  # regenerate the Open Graph card
 node scripts/screenshots.mjs <dir>  # every page at 390 and 1280 from a running preview
 ```
 
-The site is built for the domain root, so the github.io project URL shows it unstyled; check the local preview until the custom domain is set.
+The site is built for the domain root, so the github.io project URL shows it unstyled; check the local preview or the live domain.
+
+## Hosting and Cloudflare
+
+`q3interiors.ie` (apex) is a proxied Cloudflare record to GitHub Pages, the same as `book.` and `staff.`; the Pages custom domain is set. HTTPS is Cloudflare's, so GitHub's enforce-HTTPS is not used. The privacy page names both GitHub Pages and Cloudflare; keep it true if the hosting changes. Cloudflare's zone-wide Email Obfuscation would rewrite `mailto:` links and inject a script, so `Base.astro` wraps the body in `<!--email_off-->` markers; the e2e test fails if the built HTML loses them. A change in Cloudflare can change what visitors receive: after one, check the live HTML (`curl -s https://q3interiors.ie/ | grep cdn-cgi` should print nothing).
