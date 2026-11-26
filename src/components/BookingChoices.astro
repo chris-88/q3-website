@@ -14,11 +14,11 @@ const { project, page, onPanel = false } = Astro.props
 const choices = [
   {
     key: 'call' as const,
-    hint: 'We ring you at a time you pick.',
+    hint: 'We ring you at a time you pick and talk through your plans.',
   },
   {
     key: 'visit' as const,
-    hint: 'We come and look at the job with you.',
+    hint: 'We come out, look at the space and measure up for an estimate.',
   },
 ]
 ---
@@ -41,7 +41,7 @@ const choices = [
             href={bookingLink(key, page, project)}
             data-appointment={key}
             class:list={[
-              'flex min-h-16 items-center justify-between gap-4 rounded-control border px-5 py-3 no-underline',
+              'flex min-h-16 items-center justify-between gap-3 rounded-control border px-4 py-3 no-underline sm:gap-4 sm:px-5',
               tone,
             ]}
           >
@@ -50,7 +50,10 @@ const choices = [
                 {a.name} · {a.minutes} minutes
               </span>
               <span
-                class:list={['text-sm', filled !== onPanel ? 'text-on-panel-hover' : 'text-muted']}
+                class:list={[
+                  'text-sm text-pretty',
+                  filled !== onPanel ? 'text-on-panel-hover' : 'text-muted',
+                ]}
               >
                 {hint}
               </span>
@@ -76,6 +79,6 @@ const choices = [
     })}
   </ul>
   <p class:list={['text-base font-medium', onPanel ? 'text-on-panel' : 'text-ink']}>
-    Both are free.
+    Both are free. You can change or cancel the time online.
   </p>
 </div>
