@@ -18,7 +18,7 @@ const previewProjects = pick(['castleknock', 'fitzwilliam-bathroom', 'adelaide']
 
 const services = [
   ['Kitchens', 'We strip out the old kitchen, then plumb, wire, tile and fit the new one.'],
-  ['Bathrooms', 'Strip out, plumbing, tiling and fitting, by one team.'],
+  ['Bathrooms', 'Strip out, plumbing, tiling and fitting, with one person running the job.'],
   ['Several rooms', 'Work across two or more rooms, planned as one job.'],
   ['Whole-home renovations', 'Every room and every trade, run as one project.'],
   ['Extensions', 'More room, built onto the house you have.'],
@@ -28,21 +28,31 @@ const services = [
 
 const steps = [
   [
-    'Book a free call or site visit',
-    'A 20-minute phone call, or a 60-minute site visit. Tell us what you want done.',
+    'Talk to us',
+    'Start with a free 20-minute phone call, or go straight to a free 60-minute site visit.',
   ],
-  ['Get an estimate', 'We give you an estimate: a price range for the work you have in mind.'],
   [
-    'Get a written quote',
-    'Once we agree the scope with you, we send a written quote: the price for that work. Then you decide.',
+    'Get an estimate',
+    'After the site visit we send you an estimate: a price range for the work, VAT included.',
   ],
+  [
+    'Get a quote',
+    "Say yes to the estimate and we send a written quote: one price, what's included and what isn't.",
+  ],
+  ['Book your start date', 'A 10% deposit books your date. We confirm it once the deposit is in.'],
+] as const
+
+const dealWith = [
+  'The person who visits your home runs your job. They are your one contact from the first visit to the finish.',
+  'We bring in the trades your job needs.',
+  'We carry public liability insurance.',
 ] as const
 ---
 
 <Base
   title="Q3 Interiors | Renovations and fit-outs"
   fullTitle
-  description="Kitchens, bathrooms, extensions and whole-home renovations, done by one team across the trades. Start with a free 20-minute call or a free 60-minute site visit."
+  description="Kitchens, bathrooms, extensions and whole-home renovations, with one person running your job from the first visit to the finish. Start with a free 20-minute call or a free 60-minute site visit."
 >
   <section class="mx-auto max-w-page px-6 pt-8 pb-12 md:px-10 md:pt-16 md:pb-20">
     <div class="grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
@@ -52,7 +62,7 @@ const steps = [
           Construction. Without the complications.
         </h1>
         <p class="max-w-prose text-body text-muted">
-          We line up the plumber, the electrician and the tiler. You talk to one team.
+          We line up the plumber, the electrician and the tiler. You talk to one person.
         </p>
         <div id="book" class="scroll-mt-6">
           <h2 class="sr-only">Book a free call or site visit</h2>
@@ -71,8 +81,8 @@ const steps = [
             What we do
           </h2>
           <p class="max-w-prose text-muted">
-            One team across the trades. We plan the work and line up the people to do it. You deal
-            with us, not with each trade.
+            We plan the work and bring in the trades it needs. You deal with one person, not with
+            each trade.
           </p>
         </div>
         <ul class="grid gap-x-10 sm:grid-cols-2">
@@ -92,7 +102,7 @@ const steps = [
       <h2 id="how-it-works" class="mb-8 text-section font-medium">
         How it works
       </h2>
-      <ol class="grid gap-8 md:grid-cols-3 md:gap-10">
+      <ol class="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
         {steps.map(([title, line], i) => (
           <li class="flex flex-col gap-2 border-t border-ink pt-4">
             <span class="text-sm font-medium text-muted" aria-hidden="true">
@@ -103,10 +113,28 @@ const steps = [
           </li>
         ))}
       </ol>
-      <p class="mt-10 max-w-prose text-ink">
-        An estimate is a price range after a call or visit. A written quote is the price for an
-        agreed scope.
-      </p>
+      <div class="mt-10 flex max-w-prose flex-col gap-3 text-ink">
+        <p>
+          An estimate is a price range after a site visit. A quote is one price for an agreed scope.
+        </p>
+        <p>
+          If we find something once work starts, we ring you first. Nothing extra is done until
+          you've agreed the price.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="who">
+    <div class="mx-auto max-w-page px-6 pt-12 md:px-10 md:pt-20">
+      <h2 id="who" class="mb-8 text-section font-medium">
+        Who you deal with
+      </h2>
+      <ul class="grid gap-6 md:grid-cols-3 md:gap-10">
+        {dealWith.map((line) => (
+          <li class="border-t border-ink pt-4 text-ink">{line}</li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -117,7 +145,7 @@ const steps = [
           <h2 id="our-work" class="text-section font-medium">
             Our work
           </h2>
-          <p class="text-muted">Five homes and an office, from Donabate to Fitzwilliam Square.</p>
+          <p class="text-muted">Four homes and two offices, from Donabate to Fitzwilliam Square.</p>
         </div>
         <a
           href="/our-work/"
