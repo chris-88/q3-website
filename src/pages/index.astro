@@ -27,10 +27,7 @@ const services = [
 ] as const
 
 const steps = [
-  [
-    'Talk to us',
-    'Start with a free 20-minute phone call, or go straight to a free 60-minute site visit.',
-  ],
+  ['Talk to us', 'Start with a free 20-minute phone call, a free 60-minute site visit, or both.'],
   [
     'Get an estimate',
     'After the site visit we send you an estimate: a price range for the work, VAT included.',
@@ -43,9 +40,10 @@ const steps = [
 ] as const
 
 const dealWith = [
-  'The person who visits your home runs your job. They are your one contact from the first visit to the finish.',
+  "Chris Quinn visits your home and runs your job. He's your one contact from the first visit to the finish.",
   'We bring in the trades your job needs.',
   'We carry public liability insurance.',
+  'Trading since 2015.',
 ] as const
 ---
 
@@ -130,7 +128,7 @@ const dealWith = [
       <h2 id="who" class="mb-8 text-section font-medium">
         Who you deal with
       </h2>
-      <ul class="grid gap-6 md:grid-cols-3 md:gap-10">
+      <ul class="grid gap-6 sm:grid-cols-2 md:gap-10 lg:grid-cols-4">
         {dealWith.map((line) => (
           <li class="border-t border-ink pt-4 text-ink">{line}</li>
         ))}
