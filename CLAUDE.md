@@ -62,7 +62,7 @@ The tone-of-voice card (kept outside the repo) is binding. In short: "we" throug
 
 Use these terms exactly, in every page, test and note:
 
-- **Estimate**: a price range, given after a site visit (VAT included). A call never produces one; never suggest it does.
+- **Estimate**: a price range (VAT included). It usually follows a site visit; it can follow a call when the job is simple enough to price without seeing it. Approved line: "Most jobs need a site visit before we can price them." Never say a price always needs a visit, and never suggest every call ends in one.
 - **Quote**: one price for an agreed scope, with what is included and what is not. It is the only thing a customer accepts. The step is "Get a quote"; "written" is a describing word ("we send a written quote"), not part of the name.
 - Never "full quote", "formal quote", "quotation" or "estimated range". Customers are not taught "indicative" or "refined".
 - "Rough guide" is withdrawn and must not appear.
