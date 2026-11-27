@@ -105,7 +105,15 @@ test.describe('booking links', () => {
       'An estimate is a price range after a site visit. A quote is one price for an agreed scope.',
     )
     await expect(how).toContainText("Nothing extra is done until you've agreed the price.")
-    await expect(page.locator('section[aria-labelledby="who"] li')).toHaveCount(3)
+    await expect(page.locator('section[aria-labelledby="who"] li')).toHaveText([
+      "Chris Quinn visits your home and runs your job. He's your one contact from the first visit to the finish.",
+      'We bring in the trades your job needs.',
+      'We carry public liability insurance.',
+      'Trading since 2015.',
+    ])
+    await expect(how).toContainText(
+      'Start with a free 20-minute phone call, a free 60-minute site visit, or both.',
+    )
     await expect(page.locator('section[aria-labelledby="who"]')).toContainText(
       'We carry public liability insurance.',
     )

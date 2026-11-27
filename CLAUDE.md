@@ -56,7 +56,7 @@ Not built and not mentioned anywhere on the site: the bathroom planner, any pric
 
 ## Copy and tone of voice
 
-The tone-of-voice card (kept outside the repo) is binding. In short: "we" throughout, "you" for the homeowner; plain, direct, specific; Irish English, sentence case, no exclamation marks; headlines eight words or fewer; no adjectives any builder could claim (quality, professional, premium, bespoke, stunning, dream, transform, hassle-free, trusted...). An **estimate** is a price range; a **quote** is one price for an agreed scope (see Words we fix); the two appointments are a **call** and a **site visit**. No guarantees, no "fixed price", no "on time". Claims allowed: only the "Facts from Dad" section of the tone-of-voice card (one contact from first visit to finish, the trades brought in as the job needs, public liability insurance, the free call and site visit, estimate then quote then a 10% deposit to book the date, changes agreed before they are done, the six projects and how long each took). Do not invent years, team size, reviews, awards or addresses; the service area comes from the business details.
+The tone-of-voice card (kept outside the repo) is binding. In short: "we" throughout, "you" for the homeowner; plain, direct, specific; Irish English, sentence case, no exclamation marks; headlines eight words or fewer; no adjectives any builder could claim (quality, professional, premium, bespoke, stunning, dream, transform, hassle-free, trusted...). An **estimate** is a price range; a **quote** is one price for an agreed scope (see Words we fix); the two appointments are a **call** and a **site visit**. No guarantees, no "fixed price", no "on time". Claims allowed: only the "Facts from Dad" section of the tone-of-voice card (one contact from first visit to finish, the trades brought in as the job needs, public liability insurance, the free call and site visit, estimate then quote then a 10% deposit to book the date, changes agreed before they are done, the six projects and how long each took). Do not invent other years, team size, reviews, awards or addresses; the service area comes from the business details.
 
 ## Words we fix
 
@@ -67,7 +67,8 @@ Use these terms exactly, in every page, test and note:
 - Never "full quote", "formal quote", "quotation" or "estimated range". Customers are not taught "indicative" or "refined".
 - "Rough guide" is withdrawn and must not appear.
 - **One person**: the person who visits runs the job and is the one contact. Never promise "one team"; never say "subcontractors" in customer copy ("we bring in the trades your job needs").
-- "We carry public liability insurance", never "fully insured". No year of trading until Chris confirms it.
+- "We carry public liability insurance", never "fully insured".
+- The one contact is named: Chris Quinn (home page, "Who you deal with"). Q3 has traded since 2015 (Chris, 2026-11-27); it is stated once, in that block.
 
 The e2e "phase 1 scope" test fails if a banned term appears.
 
