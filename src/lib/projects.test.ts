@@ -17,7 +17,7 @@ function webpSize(file: string): { width: number; height: number } {
 }
 
 describe('projects', () => {
-  it('has the six agreed projects, five homes and one workplace', () => {
+  it('has the six agreed projects, four homes and two workplaces', () => {
     expect(projects.map((p) => p.slug)).toEqual([
       'donabate',
       'fairview',
@@ -26,8 +26,19 @@ describe('projects', () => {
       'fitzwilliam-bathroom',
       'adelaide',
     ])
-    expect(projects.filter((p) => p.audience === 'Homes')).toHaveLength(5)
-    expect(projects.filter((p) => p.audience === 'Workplaces')).toHaveLength(1)
+    expect(projects.filter((p) => p.audience === 'Homes')).toHaveLength(4)
+    expect(projects.filter((p) => p.audience === 'Workplaces')).toHaveLength(2)
+  })
+
+  it('gives every project how long the job took', () => {
+    expect(Object.fromEntries(projects.map((p) => [p.slug, p.duration]))).toEqual({
+      donabate: '3 weeks',
+      fairview: '1 month',
+      'fitzwilliam-office': '3 months',
+      castleknock: 'A week and a half',
+      'fitzwilliam-bathroom': '4 weeks',
+      adelaide: '6 weeks',
+    })
   })
 
   it('records the true size of every photo, and the wide file is the larger', () => {

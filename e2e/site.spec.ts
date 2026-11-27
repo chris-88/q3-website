@@ -40,7 +40,7 @@ test.describe('every page', () => {
 test.describe('phase 1 scope', () => {
   // Contractor material, prices and the planner are not on the public site yet.
   const banned =
-    /contractor|subcontract|tradesperson|partner|planner|day rate|€|\bEUR\b|\d+\s?k\b|fixed price|guarantee|on time|construction confidence|full quote|quotation|estimated range|rough guide/i
+    /contractor|subcontract|tradesperson|partner|planner|day rate|€|\bEUR\b|\d+\s?k\b|fixed price|guarantee|on time|construction confidence|full quote|formal quote|quotation|estimated range|rough guide|fully insured|indicative|one team/i
 
   for (const path of [...PAGES, '/no-such-page/']) {
     test(`${path} has no contractor, price or planner content`, async ({ page }) => {
@@ -91,11 +91,34 @@ test.describe('booking links', () => {
     }
   })
 
+  test('the home page explains the steps and who you deal with', async ({ page }) => {
+    await page.goto('/')
+    const steps = page.locator('section[aria-labelledby="how-it-works"] ol > li h3')
+    await expect(steps).toHaveText([
+      'Talk to us',
+      'Get an estimate',
+      'Get a quote',
+      'Book your start date',
+    ])
+    const how = page.locator('section[aria-labelledby="how-it-works"]')
+    await expect(how).toContainText(
+      'An estimate is a price range after a site visit. A quote is one price for an agreed scope.',
+    )
+    await expect(how).toContainText("Nothing extra is done until you've agreed the price.")
+    await expect(page.locator('section[aria-labelledby="who"] li')).toHaveCount(3)
+    await expect(page.locator('section[aria-labelledby="who"]')).toContainText(
+      'We carry public liability insurance.',
+    )
+    await expect(page.locator('main')).toContainText('You talk to one person.')
+  })
+
   test('project pages label the kind of project and the visit plainly', async ({ page }) => {
     await page.goto('/our-work/fitzwilliam-office/')
     await expect(page.locator('main .eyebrow')).toHaveText('Workplace project')
     await page.goto('/our-work/fairview/')
     await expect(page.locator('main .eyebrow')).toHaveText('Home project')
+    await expect(page.locator('main dl')).toContainText('How long')
+    await expect(page.locator('main dl')).toContainText('1 month')
     await expect(page.locator('#book')).toContainText(
       'Tell us about it on a call, or we come out and look at the space.',
     )
@@ -281,9 +304,9 @@ test.describe('without JavaScript', () => {
     await expect(cards).toHaveCount(6)
     for (const card of await cards.all()) await expect(card).toBeVisible()
     await page.locator('[data-chip]', { hasText: 'Workplaces' }).click()
-    await expect(page.locator('li[data-audience]:visible')).toHaveCount(1)
+    await expect(page.locator('li[data-audience]:visible')).toHaveCount(2)
     await page.locator('[data-chip]', { hasText: 'Homes' }).click()
-    await expect(page.locator('li[data-audience]:visible')).toHaveCount(5)
+    await expect(page.locator('li[data-audience]:visible')).toHaveCount(4)
     await page.locator('[data-chip]', { hasText: 'All projects' }).click()
     await expect(page.locator('li[data-audience]:visible')).toHaveCount(6)
   })
