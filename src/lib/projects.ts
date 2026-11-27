@@ -15,6 +15,8 @@ const projectSchema = z.object({
   suggestedProjectType: z.string().min(1).nullable(),
   alt: z.string().min(1),
   description: z.string().min(1),
+  /** How long the job took, as said to a customer: "3 weeks", "A week and a half". */
+  duration: z.string().trim().min(1),
   images: z.object({ small: image, wide: image }),
 })
 

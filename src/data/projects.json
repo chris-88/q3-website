@@ -6,7 +6,8 @@
     "audience": "Homes",
     "suggestedProjectType": null,
     "alt": "Timber stairs beside a black and cream geometric tiled hallway.",
-    "description": "The tiled border follows the turn of the staircase. A repeating black and cream pattern draws the eye from the front hall through to the next room.",
+    "description": "This customer has come back to us more than once. For their hallway we lifted the old floor, levelled the joists, laid a new subfloor and tiled it in a Victorian pattern. The skirting came off and went back on around the new floor.",
+    "duration": "3 weeks",
     "images": {
       "small": {
         "path": "assets/projects/donabate-small.webp",
@@ -27,7 +28,8 @@
     "audience": "Homes",
     "suggestedProjectType": "Kitchen",
     "alt": "A U-shaped kitchen with dark cabinets, timber worktops, a white sink and a star-patterned floor.",
-    "description": "Dark cabinetry wraps around three sides of this Fairview kitchen. Timber worktops and a deep white sink sit above a floor of repeating star tiles.",
+    "description": "We stripped this kitchen back to the concrete walls and subfloor, keeping only the window. Then came a new subfloor, plasterboard and skim, the tiled floor, cabinets, worktop, appliances and splashback.",
+    "duration": "1 month",
     "images": {
       "small": {
         "path": "assets/projects/fairview-small.webp",
@@ -48,7 +50,8 @@
     "audience": "Workplaces",
     "suggestedProjectType": "Workplace fit-out",
     "alt": "A Georgian entrance with a dark stair runner, blue armchair and globe pendant.",
-    "description": "A stair runner, a blue armchair and a glass-topped table define the reception area. A globe pendant hangs over the foot of the stairs.",
+    "description": "A full fit-out of a three-storey-over-basement Georgian building on Fitzwilliam Square, with its protected plasterwork preserved or reinstated. We took the entrance hall back to the joists, replaced the rotten ones and laid a natural Italian stone floor. Rooms became offices, with new bathrooms, a full rewire and replumb, a fire system and emergency lighting.",
+    "duration": "3 months",
     "images": {
       "small": {
         "path": "assets/projects/fitzwilliam-office-small.webp",
@@ -69,7 +72,8 @@
     "audience": "Homes",
     "suggestedProjectType": "Bathroom",
     "alt": "A Victorian-style tiled floor seen through an open door, with a terracotta and charcoal border.",
-    "description": "Seen from the doorway, the floor has a pattern of cream, charcoal and terracotta tiles. A dark outer border picks up the line of the room.",
+    "description": "A Victorian-style bathroom. We took the floor back to the subfloor, retiled it and fitted out the room.",
+    "duration": "A week and a half",
     "images": {
       "small": {
         "path": "assets/projects/castleknock-small.webp",
@@ -87,10 +91,11 @@
     "slug": "fitzwilliam-bathroom",
     "title": "Georgian bathroom",
     "location": "Fitzwilliam Square, Dublin 2",
-    "audience": "Homes",
+    "audience": "Workplaces",
     "suggestedProjectType": "Bathroom",
     "alt": "Two white basin cabinets beneath a wide mirror above a black and white patterned floor.",
-    "description": "Two separate basin units sit side by side beneath one mirror. White wall tiles give the patterned floor room to stand out.",
+    "description": "Bathrooms for an office on Fitzwilliam Square. We did the first fix, the pipes and cables that go in before the walls are finished, then tiled floor to ceiling in subway tiles. Modern fittings went in, with made-to-measure cabinets and mirrors.",
+    "duration": "4 weeks",
     "images": {
       "small": {
         "path": "assets/projects/fitzwilliam-bathroom-small.webp",
@@ -111,7 +116,8 @@
     "audience": "Homes",
     "suggestedProjectType": null,
     "alt": "An apartment bathroom with a curved shower enclosure, dark textured walls and a geometric floor.",
-    "description": "In the apartment bathroom, a curved shower enclosure leaves space at the centre of the floor. Dark textured wall panels meet a pale geometric tile.",
+    "description": "A full fit-out of an apartment on Adelaide Road, with a new kitchen and bathroom. In the bathroom, a curved shower enclosure leaves space at the centre of the floor.",
+    "duration": "6 weeks",
     "images": {
       "small": {
         "path": "assets/projects/adelaide-small.webp",
