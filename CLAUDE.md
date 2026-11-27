@@ -4,7 +4,7 @@ Guidance for the agent working on this repo. Read it fully before changing anyth
 
 ## What this is
 
-The public website of Q3 Interiors at `https://q3interiors.ie`: a Dublin renovation and fit-out business (one team across the trades). It shows the work and sends homeowners to the booking site, `https://book.q3interiors.ie` (repo `chris-88/q3-interiors`), for a free 20-minute phone call or a free 60-minute site visit. It replaces the old site at the same domain.
+The public website of Q3 Interiors at `https://q3interiors.ie`: a Dublin renovation and fit-out business: the person who visits runs the job and brings in the trades it needs. It shows the work and sends homeowners to the booking site, `https://book.q3interiors.ie` (repo `chris-88/q3-interiors`), for a free 20-minute phone call or a free 60-minute site visit. It replaces the old site at the same domain.
 
 Phase 1 (2026-11-28): home, "Our work" gallery, six project pages, privacy, 404, sitemap, robots, favicons, Open Graph. Static pre-rendered HTML; the only JavaScript is the small campaign-tag script below.
 
@@ -56,16 +56,20 @@ Not built and not mentioned anywhere on the site: the bathroom planner, any pric
 
 ## Copy and tone of voice
 
-The tone-of-voice card (kept outside the repo) is binding. In short: "we" throughout, "you" for the homeowner; plain, direct, specific; Irish English, sentence case, no exclamation marks; headlines eight words or fewer; no adjectives any builder could claim (quality, professional, premium, bespoke, stunning, dream, transform, hassle-free, trusted...). An **estimate** is a price range; a **written quote** is the price for an agreed scope (see Words we fix); the two appointments are a **call** and a **site visit**. No guarantees, no "fixed price", no "on time". Claims allowed: one team across the trades, a free 20-minute call, a free 60-minute site visit, an estimate then a written quote, the six projects. Do not invent years, team size, reviews, awards, areas served or addresses.
+The tone-of-voice card (kept outside the repo) is binding. In short: "we" throughout, "you" for the homeowner; plain, direct, specific; Irish English, sentence case, no exclamation marks; headlines eight words or fewer; no adjectives any builder could claim (quality, professional, premium, bespoke, stunning, dream, transform, hassle-free, trusted...). An **estimate** is a price range; a **quote** is one price for an agreed scope (see Words we fix); the two appointments are a **call** and a **site visit**. No guarantees, no "fixed price", no "on time". Claims allowed: only the "Facts from Dad" section of the tone-of-voice card (one contact from first visit to finish, the trades brought in as the job needs, public liability insurance, the free call and site visit, estimate then quote then a 10% deposit to book the date, changes agreed before they are done, the six projects and how long each took). Do not invent years, team size, reviews, awards or addresses; the service area comes from the business details.
 
 ## Words we fix
 
 Use these terms exactly, in every page, test and note:
 
-- **Estimate**: a price range, given after a call or a site visit.
-- **Written quote**: the price for an agreed scope.
-- Never "full quote", "quotation" or "estimated range".
-- "Rough guide" is reserved for the future planner stage and must not appear on the site yet.
+- **Estimate**: a price range, given after a site visit (VAT included). A call never produces one; never suggest it does.
+- **Quote**: one price for an agreed scope, with what is included and what is not. It is the only thing a customer accepts. The step is "Get a quote"; "written" is a describing word ("we send a written quote"), not part of the name.
+- Never "full quote", "formal quote", "quotation" or "estimated range". Customers are not taught "indicative" or "refined".
+- "Rough guide" is withdrawn and must not appear.
+- **One person**: the person who visits runs the job and is the one contact. Never promise "one team"; never say "subcontractors" in customer copy ("we bring in the trades your job needs").
+- "We carry public liability insurance", never "fully insured". No year of trading until Chris confirms it.
+
+The e2e "phase 1 scope" test fails if a banned term appears.
 
 ## Contact details
 
