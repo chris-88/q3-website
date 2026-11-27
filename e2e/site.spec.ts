@@ -102,7 +102,10 @@ test.describe('booking links', () => {
     ])
     const how = page.locator('section[aria-labelledby="how-it-works"]')
     await expect(how).toContainText(
-      'An estimate is a price range after a site visit. A quote is one price for an agreed scope.',
+      'An estimate is a price range. A quote is one price for an agreed scope.',
+    )
+    await expect(how).toContainText(
+      'We send you an estimate: a price range for the work, VAT included. Most jobs need a site visit first.',
     )
     await expect(how).toContainText("Nothing extra is done until you've agreed the price.")
     await expect(page.locator('section[aria-labelledby="who"] li')).toHaveText([
